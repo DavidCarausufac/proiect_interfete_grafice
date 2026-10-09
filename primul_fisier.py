@@ -1,1 +1,1 @@
-print("primul print")
+print("aici esti pe develop")
