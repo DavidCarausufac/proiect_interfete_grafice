@@ -1,1 +1,0 @@
-print("aici esti pe develop")
