@@ -5,7 +5,7 @@
 #include <QFileSystemModel>
 #include <QSplitter>
 #include <QListView>
-#include <QTextEdit>
+#include <QFile>
 #include <QDir>
 #include <QHBoxLayout>
 using namespace std;
@@ -17,9 +17,11 @@ int main(int argc, char* argv[])
     window->resize(QSize(1000,1000));
 
     QFileSystemModel *model = new QFileSystemModel;
+    model->setReadOnly(true);
     model->setRootPath(QDir::homePath());
-    model->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
-
+    model->setFilter(QDir::AllDirs | QDir::Files |QDir::NoDotAndDotDot );
+    model->setNameFilters(QStringList {"*.zip", "*.tar.gz", "*.tar", "*.7z "});
+    model->setNameFilterDisables(false);
     QTreeView *tree = new QTreeView();
     tree->setModel(model);
     tree->setRootIndex(model->index(QDir::homePath()));
